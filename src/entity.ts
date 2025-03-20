@@ -87,10 +87,11 @@ function sort_entities(): void {
 
 // Insert entity while keeping them sorted
 function insert_entity(e: Entity): void {
+    // binary search
     let low = 0;
     let high = entities.length;
     while (low < high) {
-        let mid = (low + high) >>> 2;
+        let mid = (low + high) >>> 1; // floor div by 2
         if (entities[mid].z_index() < e.z_index()) low = mid + 1;
         else high = mid;
     }

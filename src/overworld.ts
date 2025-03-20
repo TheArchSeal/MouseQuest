@@ -17,7 +17,7 @@ export function update(inputs: Input, dt: number): void {
     if (inputs.held.has(Controls.RIGHT)) velocity.add(Vector.UNIT_X);
 
     if (inputs.pressed.has(Controls.DEBUG)) {
-        create_entity(player.pos, 50, 50, "blue")
+        create_entity(player.pos.clone(), 50, 50, "blue")
     }
 
     if (!is_zero(velocity)) {
