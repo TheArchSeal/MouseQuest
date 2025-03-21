@@ -24,6 +24,17 @@ export class Vector {
     }
 
     /**
+     * Sets coordiantes to match another vector
+     * @param v - Vector match
+     * @returns Itself
+     */
+    set(v: Vector): Vector {
+        this.x = v.x;
+        this.y = v.y;
+        return this;
+    }
+
+    /**
      * Checks equality
      * @param v - Vector to compare
      * @returns Wether the coordinates are the same
@@ -132,7 +143,7 @@ export function eq(v: Vector, w: Vector): boolean {
  */
 export function sum(...vs: Vector[]): Vector {
     const u = Vector.ZERO.clone();
-    vs.forEach(u.add);
+    vs.forEach(v => u.add(v));
     return u;
 }
 
@@ -210,4 +221,19 @@ export function angle(v: Vector, w: Vector): number {
  */
 export function is_zero(v: Vector): boolean {
     return inner_prod(v, v) === 0;
+}
+
+/**
+ * Checks if vector is within a rectangle
+ * @param v - Vector to check
+ * @param a - First corner
+ * @param b - Second corder
+ * @returns Wether the vector to check is within the bounds of the other two
+ */
+export function in_rect(v: Vector, a: Vector, b: Vector): boolean {
+    const left = Math.min(a.x, b.x);
+    const right = Math.max(a.x, b.x);
+    const top = Math.min(a.y, b.y);
+    const bottom = Math.max(a.y, b.y);
+    return left <= v.x && v.x <= right && top <= v.y && v.y <= bottom;
 }

@@ -6,24 +6,20 @@ import { Vector } from "./vector"
 export class Entity {
     /** Position */
     pos: Vector;
-    /** Width */
-    w: number;
-    /** Hight */
-    h: number;
+    /** Size */
+    size: Vector;
     /** Source image or color */
     src: string | HTMLImageElement;
 
     /**
      * Create an entity
      * @param pos - Position
-     * @param w - Width
-     * @param h - Height
+     * @param size - Size
      * @param src - Souce image or color
      */
-    constructor(pos: Vector, w: number, h: number, src: string | HTMLImageElement) {
+    constructor(pos: Vector, size: Vector, src: string | HTMLImageElement) {
         this.pos = pos;
-        this.w = w;
-        this.h = h;
+        this.size = size;
         this.src = src;
 
         insert_entity(this);
@@ -66,12 +62,11 @@ export class Entity {
 /**
  * Create an entity
  * @param pos - Position
- * @param w - Width
- * @param h - Height
+ * @param size - Size
  * @param src - Souce image or color
  */
-export function create_entity(pos: Vector, w: number, h: number, src: string | HTMLImageElement): void {
-    new Entity(pos, w, h, src);
+export function create_entity(pos: Vector, size: Vector, src: string | HTMLImageElement): void {
+    new Entity(pos, size, src);
 }
 
 /**
@@ -83,7 +78,6 @@ export const entities: Entity[] = [];
 function sort_entities(): void {
     entities.sort((a, b) => a.z_index() - b.z_index());
 }
-
 
 // Insert entity while keeping them sorted
 function insert_entity(e: Entity): void {

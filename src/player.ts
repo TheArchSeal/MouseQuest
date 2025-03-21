@@ -13,16 +13,13 @@ export class Player extends Entity {
      * Create a player
      * @param speed - How far to move per second
      * @param pos - Starting position
-     * @param w - Width
-     * @param h - Height
+     * @param size - Size
      */
-    constructor(speed: number, pos: Vector, w: number, h: number) {
-        super(pos, w, h, "red");
+    constructor(speed: number, pos: Vector, size: Vector) {
+        super(pos, size, "red");
         this.speed = speed;
     }
 };
 
-/**
- * Current player
- */
-export const player = new Player(500, scaled(100, Vector.UNIT_Y), 100, 100);
+/** Current player */
+export const player = new Player(500, new Vector(0, 100), new Vector(100, 100));
